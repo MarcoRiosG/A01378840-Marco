@@ -1,5 +1,6 @@
 package Practica2;
-
+//Marco Antonio Rios Gutierrez A01378840
+//Alan Sevilla Martinez A01378571
 
 import java.util.NoSuchElementException;
 
@@ -35,6 +36,7 @@ public class SLinkedList<E> implements List<E> {
 
 	public void add(int index, E element) {
 		// TODO Auto-generated method stub
+                
 		SNode<E> nn = new SNode<E>(element);
                 SNode<E> actual = top;
                 for(int i=0; i<index; i++){
@@ -223,9 +225,14 @@ public class SLinkedList<E> implements List<E> {
 
 	public Object[] toArray() {
 		// TODO Auto-generated method stub
-                Object[] miarray = SLinkedList<E>(5);
-                miarray = SLinkedList<E>.toArray(miarray);
-		return null;
+                Object[] miarray = new Object[size];
+                
+                int i=0;
+                for (SNode<E> x = top.next; x!=null; x=x.next){
+                    miarray[i++] = x.value;
+                    
+                }
+		return miarray;
 	}
 	
         @Override
