@@ -15,7 +15,7 @@ public class Main {
     
     
 
-    public static int linealSearch(int lista[]){
+    /*public static int linealSearch(int lista[]){
          
         int t= 5;
             for(int x=0;x>=lista.length;x++){
@@ -46,7 +46,7 @@ public class Main {
         }
         return -1;
     }
-    
+    */
 	
 	private static void shiftContentsRight(int lista[], int start, int end) {		                
 		int k=lista[end];
@@ -89,6 +89,22 @@ public class Main {
              System.out.println(Arrays.toString(lista));   
     }
     
+    public static void bubbleSort(int lista[]){
+        boolean not_sorted = true;
+        while(not_sorted){
+            not_sorted=false;
+            for(int x=1;x<lista.length;x++){
+                if(lista[x]<lista[x-1]){
+                    int t=lista[x];
+                    lista[x]=lista[x-1];
+                    lista[x-1]=t;
+                    not_sorted=true;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(lista));
+    }
+    
     public static void main(String[] args){
         /*IntegerLinkedList iList = new IntegerLinkedList();
         System.out.println(iList);
@@ -128,10 +144,11 @@ public class Main {
         System.out.println(iList.getLast());*/
         
         //Busqueda lineal
-        int[] lista={1,9,7,10,143, 4};
-               binarySearch(lista); 
+        int[] lista={1,9,7,10,143,4};
+               //binarySearch(lista); 
                insertionSort(lista);
                selectionSort(lista);
+               bubbleSort(lista);
         
     }
 }
