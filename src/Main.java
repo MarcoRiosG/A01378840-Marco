@@ -1,3 +1,6 @@
+
+import java.util.Arrays;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -44,6 +47,47 @@ public class Main {
         return -1;
     }
     
+	
+	private static void shiftContentsRight(int lista[], int start, int end) {		                
+		int k=lista[end];
+		for(int x=end; x >start; x--){
+			lista[end] = lista[x-1];
+                        end--;
+                }
+		lista[start] = k;
+	}
+    
+    public static void insertionSort(int lista[]){
+        int i=1;
+        for (i=1;i<lista.length;i++){
+            
+            int j;
+            for(j=0;j<i;j++){
+                if(lista[i]<lista[j]){
+                    shiftContentsRight(lista,j,i);
+                }                
+            }          
+        }
+        System.out.println(Arrays.toString(lista));
+    }
+    
+    public static void selectionSort(int lista[]){
+        int i;
+        for(i=0;i<lista.length;i++){
+            int j;
+            int s=lista[i];
+            for(j=i;j<lista.length;j++){
+                if(lista[j]<s)
+                    s=lista[j];
+                
+            }
+            if(s!=lista[i]){
+                lista[j]=lista[i];
+                lista[i]=s;
+            }
+        }
+             System.out.println(Arrays.toString(lista));   
+    }
     
     public static void main(String[] args){
         /*IntegerLinkedList iList = new IntegerLinkedList();
@@ -84,10 +128,10 @@ public class Main {
         System.out.println(iList.getLast());*/
         
         //Busqueda lineal
-        int[] lista={1,4,7,9,10,143};
+        int[] lista={1,9,7,10,143, 4};
                binarySearch(lista); 
-    
-        
+               insertionSort(lista);
+               selectionSort(lista);
         
     }
 }
