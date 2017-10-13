@@ -104,6 +104,64 @@ public class Main {
         }
         System.out.println(Arrays.toString(lista));
     }
+    public static void makeHeap(int lista[]){
+        for(int i=0; i<lista.length;i++){
+            int index=i;
+            while(index !=0){
+                int parent = (index-1)/2;
+                if(lista[index]<=lista[parent])
+                    break;
+                
+                int temp = lista[index];
+                lista[index]=lista[parent];
+                lista[parent]= temp;
+                
+                index=parent;
+            }
+        }
+    }
+    
+    public static int removeTopItem(int lista[], int count){
+        int result = lista[0];
+        
+        lista[0]=lista[count-1];
+        int index=0;
+        while(true){
+            int child1=2*index+1;
+            int child2=2*index+2;
+            
+            if(child1>=count){
+                child1=index;
+            }
+            
+            if(child2>=count){
+                child2=index;
+            }
+        
+            if(lista[index]>=lista[child1] && lista[index]>=lista[child2]){
+                break;
+            }
+            
+            int swapChild=child1;
+            if(lista[child2]>lista[child1]){
+                swapChild=child2;
+            }
+            
+            int temp=lista[index];
+            lista[index]=lista[swapChild];
+            lista[swapChild]=temp;
+        }
+        return result;
+    }
+    
+    public static void heapSort(int lista[]){
+        makeHeap(lista);
+        for(int x=lista.length; x>0;x--){
+            int t = removeTopItem(lista, x);
+            lista[x-1] = t;
+        }
+        
+    }
     
     public static void main(String[] args){
         /*IntegerLinkedList iList = new IntegerLinkedList();
@@ -146,10 +204,16 @@ public class Main {
         //Busqueda lineal
         int[] lista={1,9,7,10,143,4};
                //binarySearch(lista); 
-               insertionSort(lista);
+               /*insertionSort(lista);
                selectionSort(lista);
-               bubbleSort(lista);
-        
+               bubbleSort(lista);*/
+               /*System.out.println(Arrays.toString(lista));
+               makeHeap(lista);
+               System.out.println(Arrays.toString(lista));
+               System.out.println(removeTopItem(lista, lista.length));
+               System.out.println(Arrays.toString(lista));*/
+        heapSort(lista);
+        System.out.println(Arrays.toString(lista));
     }
 }
 
