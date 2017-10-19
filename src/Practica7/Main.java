@@ -2,10 +2,36 @@ package Practica7;
 
 
 public class Main {
+    
+    //********
+    //Examen Reporte 2
+    //********
+    public static String reverseParentheses(String a){
+        Stack<Character> pila=new Stack<Character>();
+        String c="";
+        for(int i=0;i<a.length();i++){
+            char b=a.charAt(i);
+            if('('==b){
+                char d=a.charAt(i+1);
+                char e=a.charAt(i+2);
+                pila.push(d);
+                pila.push(e);
+                i+=2;
+            } else if(')'==b){
+                c+=pila.pop();
+                c+=pila.pop();
+            } else{
+                
+                c+=b;
+            }
+        }
+        
+        return c;
+    }
 	
-	public static String checkForBalance(String expression) {
+	//public static String checkForBalance(String expression) {
             
-            Stack<Character> pila = new Stack<Character>();
+            /*Stack<Character> pila = new Stack<Character>();
             String b="";
             for(int i=0; i<=expression.length()-1; i++){
                     char a=expression.charAt(i);
@@ -44,9 +70,9 @@ public class Main {
                 return b+"^ Missing Right Symbol";
             }
             return "Expression is Balanced";
-	}
+	}*/
 	
-	public static String postfixEval(String expression) {
+	/*public static String postfixEval(String expression) {
 		Stack<Integer> pila = new Stack<Integer>();
                 String r = "";
                 for(int i=0;i<expression.length();i++){
@@ -66,9 +92,7 @@ public class Main {
                             }
                             
                         }
-                        /*int x = pila.pop()+pila.pop();
-                        r = String.valueOf(x);
-                        pila.push(x);*/
+                        
                     } else if('-'==a){
                         if(pila.empty()){
                             return "The expression has too many operators";
@@ -83,10 +107,7 @@ public class Main {
                             }
                             
                         }
-                        /*int y = pila.pop();
-                        int x = pila.pop()-y;
-                        r = String.valueOf(x);
-                        pila.push(x);*/
+                        
                     } else if('*'==a){
                         if(pila.empty()){
                             return "The expression has too many operators";
@@ -101,9 +122,7 @@ public class Main {
                             }
                             
                         }
-                        /*int x = pila.pop()*pila.pop();
-                        r = String.valueOf(x);
-                        pila.push(x);*/
+                        
                     } else if('/'==a){
                         if(pila.empty()){
                             return "The expression has too many operators";
@@ -118,10 +137,7 @@ public class Main {
                             }
                             
                         }
-                        /*int y = pila.pop();
-                        int x = pila.pop()/y;
-                        r = String.valueOf(x);
-                        pila.push(x);*/
+                        
                     } else if(Character.isDigit(a)){
                         int x=Character.getNumericValue(a);
                         pila.push(x);
@@ -145,10 +161,14 @@ public class Main {
                 }
                 
                 
-	}
+	}*/
 	
 	public static void main(String[] args) {
-		System.out.println("Testing balanced symbols");
+            
+            System.out.println(reverseParentheses("¡Mi examen de estructura de datos!"));
+            System.out.println(reverseParentheses("a(bc)de"));
+            System.out.println(reverseParentheses("(ab)(cd)(ef)"));
+		/*System.out.println("Testing balanced symbols");
 		System.out.println(checkForBalance("t = arr[3] + a) - 4"));
 		System.out.println(checkForBalance("if (arr(3] < 4)"));
 		System.out.println(checkForBalance("System.out.println(std.charAt(3);"));
@@ -180,6 +200,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println();
+		System.out.println();*/
+                
 	}
 }
