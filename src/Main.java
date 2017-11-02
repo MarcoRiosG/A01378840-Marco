@@ -163,6 +163,44 @@ public class Main {
         
     }
     
+    public static void quickSort(int lista[], int inicio, int fin){
+        if(inicio>=fin)
+            return;
+        
+        int divisor=lista[inicio];
+        
+        Stack<Integer> menores = new Stack<Integer>();
+        Stack<Integer> mayores = new Stack<Integer>();
+        
+        for(int i=inicio+1;i<=fin;i++){
+            if(lista[i]<divisor)
+                menores.push(lista[i]);
+            else
+                mayores.push(lista[i]);
+                        
+        }
+        
+        int j=inicio;
+        
+        while(!menores.empty()){
+            lista[j++]=menores.pop();
+        }
+        
+        int middle=j++;
+        lista[middle]=divisor;
+        while(!mayores.empty()){
+            lista[j++]=mayores.pop();
+        }
+        
+                
+                
+        
+        quickSort(lista, inicio, divisor-1);
+        quickSort(lista, divisor+1, fin);
+        
+        
+    }
+    
     public static void main(String[] args){
         /*IntegerLinkedList iList = new IntegerLinkedList();
         System.out.println(iList);
@@ -212,7 +250,9 @@ public class Main {
                System.out.println(Arrays.toString(lista));
                System.out.println(removeTopItem(lista, lista.length));
                System.out.println(Arrays.toString(lista));*/
-        heapSort(lista);
+        //heapSort(lista);
+        System.out.println(Arrays.toString(lista));
+        quickSort(lista,0,lista.length);
         System.out.println(Arrays.toString(lista));
     }
 }
