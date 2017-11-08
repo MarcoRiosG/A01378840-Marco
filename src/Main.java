@@ -191,12 +191,58 @@ public class Main {
         while(!mayores.empty()){
             lista[j++]=mayores.pop();
         }
-        
                 
-                
-        
         quickSort(lista, inicio, divisor-1);
         quickSort(lista, divisor+1, fin);
+        
+    }
+    
+    public static void mergeSort(int[] lista, int[] temporal, int inicio, int fin){
+        
+        if(inicio>=fin)
+            return;
+        
+        int mitad = (inicio+fin)/2;
+        
+        mergeSort(lista,temporal,inicio,mitad);
+        mergeSort(lista,temporal,mitad+1,fin);
+        
+        int indiceizq=inicio;
+        int indiceder=mitad+1;
+        int indicetemp=indiceizq;
+        
+        
+        
+        while(indiceizq<=mitad && indiceder<=fin){
+            if(lista[indiceizq] <=lista[indiceder]){
+                temporal[indicetemp] =lista[indiceizq];
+                indiceizq+=1;
+            } else {
+                temporal[indicetemp] =lista[indiceder];
+                indiceder+=1;
+
+            }
+            indicetemp++;
+        }
+        
+        
+        for(int i=indiceizq; i<=mitad; i++){
+            temporal[indicetemp]=lista[i];
+            indicetemp+=1;
+        }
+        
+        for(int i=indiceder; i<=fin; i++){
+            temporal[indicetemp]=lista[i];
+            indicetemp+=1;
+        }
+        
+        
+        
+        for(int i=inicio;i<=fin;i++){
+            lista[i]=temporal[i];
+        }
+        
+        
         
         
     }
@@ -241,6 +287,7 @@ public class Main {
         
         //Busqueda lineal
         int[] lista={1,9,7,10,143,4};
+        int[] temporal=new int[lista.length];
                //binarySearch(lista); 
                /*insertionSort(lista);
                selectionSort(lista);
@@ -252,7 +299,9 @@ public class Main {
                System.out.println(Arrays.toString(lista));*/
         //heapSort(lista);
         System.out.println(Arrays.toString(lista));
-        quickSort(lista,0,lista.length);
+        //quickSort(lista,0,lista.length);
+        //System.out.println(Arrays.toString(lista));
+        mergeSort(lista,temporal,0,lista.length-1);
         System.out.println(Arrays.toString(lista));
     }
 }
